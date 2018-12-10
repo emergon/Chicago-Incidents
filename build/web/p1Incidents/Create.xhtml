@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1IncidentsCreateDlg" widgetVar="P1IncidentsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateP1IncidentsTitle}">
+            <h:form id="P1IncidentsCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{p1IncidentsController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciKwd}" for="inciKwd" />
+                        <p:inputText id="inciKwd" value="#{p1IncidentsController.selected.inciKwd}" title="#{bundle.CreateP1IncidentsTitle_inciKwd}" required="true" requiredMessage="#{bundle.CreateP1IncidentsRequiredMessage_inciKwd}"/>
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciCreationDate}" for="inciCreationDate" />
+                        <p:calendar id="inciCreationDate" pattern="MM/dd/yyyy" value="#{p1IncidentsController.selected.inciCreationDate}" title="#{bundle.EditP1IncidentsTitle_inciCreationDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciCompletionDate}" for="inciCompletionDate" />
+                        <p:calendar id="inciCompletionDate" pattern="MM/dd/yyyy" value="#{p1IncidentsController.selected.inciCompletionDate}" title="#{bundle.EditP1IncidentsTitle_inciCompletionDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciRequestNum}" for="inciRequestNum" />
+                        <p:inputText id="inciRequestNum" value="#{p1IncidentsController.selected.inciRequestNum}" title="#{bundle.CreateP1IncidentsTitle_inciRequestNum}" />
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciAddress}" for="inciAddress" />
+                        <p:inputText id="inciAddress" value="#{p1IncidentsController.selected.inciAddress}" title="#{bundle.CreateP1IncidentsTitle_inciAddress}" />
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciZip}" for="inciZip" />
+                        <p:inputText id="inciZip" value="#{p1IncidentsController.selected.inciZip}" title="#{bundle.CreateP1IncidentsTitle_inciZip}" />
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciX}" for="inciX" />
+                        <p:inputText id="inciX" value="#{p1IncidentsController.selected.inciX}" title="#{bundle.CreateP1IncidentsTitle_inciX}" />
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciY}" for="inciY" />
+                        <p:inputText id="inciY" value="#{p1IncidentsController.selected.inciY}" title="#{bundle.CreateP1IncidentsTitle_inciY}" />
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciWard}" for="inciWard" />
+                        <p:inputText id="inciWard" value="#{p1IncidentsController.selected.inciWard}" title="#{bundle.CreateP1IncidentsTitle_inciWard}" />
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciPoliceDistrict}" for="inciPoliceDistrict" />
+                        <p:inputText id="inciPoliceDistrict" value="#{p1IncidentsController.selected.inciPoliceDistrict}" title="#{bundle.CreateP1IncidentsTitle_inciPoliceDistrict}" />
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciCommArea}" for="inciCommArea" />
+                        <p:inputText id="inciCommArea" value="#{p1IncidentsController.selected.inciCommArea}" title="#{bundle.CreateP1IncidentsTitle_inciCommArea}" />
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciLatitude}" for="inciLatitude" />
+                        <p:inputText id="inciLatitude" value="#{p1IncidentsController.selected.inciLatitude}" title="#{bundle.CreateP1IncidentsTitle_inciLatitude}" />
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciLongitude}" for="inciLongitude" />
+                        <p:inputText id="inciLongitude" value="#{p1IncidentsController.selected.inciLongitude}" title="#{bundle.CreateP1IncidentsTitle_inciLongitude}" />
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciRequestType}" for="inciRequestType" />
+                        <p:selectOneMenu id="inciRequestType" value="#{p1IncidentsController.selected.inciRequestType}" >
+                            <f:selectItems value="#{p1IncidentTypeController.itemsAvailableSelectOne}"
+                                           var="inciRequestTypeItem"
+                                           itemValue="#{inciRequestTypeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciStatus}" for="inciStatus" />
+                        <p:selectOneMenu id="inciStatus" value="#{p1IncidentsController.selected.inciStatus}" >
+                            <f:selectItems value="#{p1StatusController.itemsAvailableSelectOne}"
+                                           var="inciStatusItem"
+                                           itemValue="#{inciStatusItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_xrhsKwd}" for="xrhsKwd" />
+                        <p:selectOneMenu id="xrhsKwd" value="#{p1IncidentsController.selected.xrhsKwd}" >
+                            <f:selectItems value="#{p1XrhsthsController.itemsAvailableSelectOne}"
+                                           var="xrhsKwdItem"
+                                           itemValue="#{xrhsKwdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{p1IncidentsController.create}" value="#{bundle.Save}" update="display,:P1IncidentsListForm:datalist,:growl" oncomplete="handleSubmit(args,'P1IncidentsCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PF('P1IncidentsCreateDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

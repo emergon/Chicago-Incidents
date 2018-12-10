@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition>
+
+        <p:dialog id="P1AbandonedVehicleViewDlg" widgetVar="P1AbandonedVehicleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewP1AbandonedVehicleTitle}">
+            <h:form id="P1AbandonedVehicleViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" rendered="#{p1AbandonedVehicleController.selected != null}">
+                        <h:outputText value="Creation Date"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.inciKwd.inciCreationDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Status"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.inciKwd.inciStatus}"/>
+                        <h:outputText value="Request Number"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.inciKwd.inciRequestNum}"/>
+                        <h:outputText value="Completion Date"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.inciKwd.inciCompletionDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Address"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.inciKwd.inciAddress}"/>
+                        <h:outputText value="X"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.inciKwd.inciX}"/>
+                        <h:outputText value="Y"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.inciKwd.inciY}"/>
+                        <h:outputText value="Zip"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.inciKwd.inciZip}"/>
+                        <h:outputText value="Ward"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.inciKwd.inciWard}"/>
+                        <h:outputText value="Community Area"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.inciKwd.inciCommArea}"/>
+                        <h:outputText value="Police District"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.inciKwd.inciPoliceDistrict}"/>
+                        <h:outputText value="Latitude"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.inciKwd.inciLatitude}"/>
+                        <h:outputText value="Longitude"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.inciKwd.inciLongitude}"/>
+
+
+                        <h:outputText value="#{bundle.ViewP1AbandonedVehicleLabel_abanVehiPlate}"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.abanVehiPlate}" title="#{bundle.ViewP1AbandonedVehicleTitle_abanVehiPlate}"/>
+                        <h:outputText value="#{bundle.ViewP1AbandonedVehicleLabel_abanVehiModel}"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.abanVehiModel}" title="#{bundle.ViewP1AbandonedVehicleTitle_abanVehiModel}"/>
+                        <h:outputText value="#{bundle.ViewP1AbandonedVehicleLabel_abanVehiDaysParked}"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.abanVehiDaysParked}" title="#{bundle.ViewP1AbandonedVehicleTitle_abanVehiDaysParked}"/>
+                        <h:outputText value="#{bundle.ViewP1AbandonedVehicleLabel_abanVehiSsa}"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.abanVehiSsa}" title="#{bundle.ViewP1AbandonedVehicleTitle_abanVehiSsa}"/>
+                        <h:outputText value="#{bundle.ViewP1AbandonedVehicleLabel_abanVehiColor}"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.abanVehiColor.coloName}" title="#{bundle.ViewP1AbandonedVehicleTitle_abanVehiColor}"/>
+                        <h:outputText value="#{bundle.ViewP1AbandonedVehicleLabel_abanVehiActivity}"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.abanVehiActivity.currActiName}" title="#{bundle.ViewP1AbandonedVehicleTitle_abanVehiActivity}"/>
+                        <h:outputText value="#{bundle.ViewP1AbandonedVehicleLabel_abanVehiRecentAction}"/>
+                        <h:outputText value="#{p1AbandonedVehicleController.selected.abanVehiRecentAction.receActiName}" title="#{bundle.ViewP1AbandonedVehicleTitle_abanVehiRecentAction}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PF('P1AbandonedVehicleViewDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

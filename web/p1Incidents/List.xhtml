@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListP1IncidentsTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="P1IncidentsListForm">
+                <p:panel header="#{bundle.ListP1IncidentsTitle}">
+                    <p:dataTable id="datalist" value="#{p1IncidentsController.lazyModel}" var="item"
+                                 selectionMode="single" selection="#{p1IncidentsController.selected}"
+                                 paginator="true"
+                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                 rowKey="#{item.inciKwd}"
+                                 rows="10"
+                                 rowsPerPageTemplate="5,10,15,20"
+                                 lazy="true"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciKwd}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciKwd}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciCreationDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciCreationDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciCompletionDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciCompletionDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciRequestNum}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciRequestNum}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciAddress}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciAddress}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciZip}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciZip}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciX}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciX}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciY}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciY}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciWard}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciWard}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciPoliceDistrict}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciPoliceDistrict}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciCommArea}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciCommArea}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciLatitude}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciLatitude}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciLongitude}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciLongitude}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciRequestType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciRequestType}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciStatus}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciStatus}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_xrhsKwd}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xrhsKwd}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{p1IncidentsController.prepareCreate}" update=":P1IncidentsCreateForm" oncomplete="PF('P1IncidentsCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":P1IncidentsViewForm" oncomplete="PF('P1IncidentsViewDialog').show()" disabled="#{empty p1IncidentsController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":P1IncidentsEditForm" oncomplete="PF('P1IncidentsEditDialog').show()" disabled="#{empty p1IncidentsController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{p1IncidentsController.destroy}" update=":growl,datalist" disabled="#{empty p1IncidentsController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1XrhsthsCreateDlg" widgetVar="P1XrhsthsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateP1XrhsthsTitle}">
+            <h:form id="P1XrhsthsCreateForm">
+                <p:messages id="msgs" />
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{p1XrhsthsController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateP1XrhsthsLabel_xrhsUsername}" for="xrhsUsername" />
+                        <p:inputText id="xrhsUsername" 
+                                     value="#{p1XrhsthsController.selected.xrhsUsername}" 
+                                     title="#{bundle.CreateP1XrhsthsTitle_xrhsUsername}" 
+                                     required="true" requiredMessage="The Username field is required."
+                                     binding="#{p1XrhsthsController.usernameInput}" placeholder="username..."
+                                     >
+                            <p:ajax event="blur" listener="#{p1XrhsthsController.checkUsername()}" update="msgs"/>
+                        </p:inputText>
+
+                        <p:outputLabel value="#{bundle.CreateP1XrhsthsLabel_xrhsFname}" for="xrhsFname" />
+                        <p:inputText id="xrhsFname" value="#{p1XrhsthsController.selected.xrhsFname}" title="#{bundle.CreateP1XrhsthsTitle_xrhsFname}" 
+                                     required="true" requiredMessage="The FirstName field is required."/>
+
+                        <p:outputLabel value="#{bundle.CreateP1XrhsthsLabel_xrhsLname}" for="xrhsLname" />
+                        <p:inputText id="xrhsLname" value="#{p1XrhsthsController.selected.xrhsLname}" title="#{bundle.CreateP1XrhsthsTitle_xrhsLname}" 
+                                     required="true" requiredMessage="The LastName field is required."/>
+
+                        <p:outputLabel value="#{bundle.CreateP1XrhsthsLabel_xrhsAddress}" for="xrhsAddress" />
+                        <p:inputText id="xrhsAddress" value="#{p1XrhsthsController.selected.xrhsAddress}" title="#{bundle.CreateP1XrhsthsTitle_xrhsAddress}" 
+                                     required="true" requiredMessage="The Address field is required."/>
+
+                        <p:outputLabel value="#{bundle.CreateP1XrhsthsLabel_xrhsEmail}" for="xrhsEmail" />
+                        <p:inputText id="xrhsEmail" value="#{p1XrhsthsController.selected.xrhsEmail}" title="#{bundle.CreateP1XrhsthsTitle_xrhsEmail}"
+                                     required="true" requiredMessage="The Email field is required."/>
+
+                        <p:outputLabel value="#{bundle.CreateP1XrhsthsLabel_xrhsPassword}" />
+                        <h:outputText value="Ask your supervisor"/>
+
+                        <p:outputLabel value="#{bundle.CreateP1XrhsthsLabel_xrhsType}" for="xrhsType" />
+                        <p:selectOneMenu id="xrhsType" value="#{p1XrhsthsController.selected.xrhsType}" title="#{bundle.CreateP1XrhsthsTitle_xrhsType}" style="width:125px">
+                            <f:selectItem itemLabel="Sophisticated User" itemValue="1" />
+                            <f:selectItem itemLabel="Common User" itemValue="2" />
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{p1XrhsthsController.create}" value="#{bundle.Save}" update="display,:P1XrhsthsListForm:datalist,:growl" oncomplete="handleSubmit(args,'P1XrhsthsCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PF('P1XrhsthsCreateDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

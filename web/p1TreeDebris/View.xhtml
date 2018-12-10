@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1TreeDebrisViewDlg" widgetVar="P1TreeDebrisViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewP1TreeDebrisTitle}">
+            <h:form id="P1TreeDebrisViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" rendered="#{p1TreeDebrisController.selected != null}">
+                        <h:outputText value="Creation Date"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.inciKwd.inciCreationDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Status"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.inciKwd.inciStatus}"/>
+                        <h:outputText value="Request Number"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.inciKwd.inciRequestNum}"/>
+                        <h:outputText value="Completion Date"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.inciKwd.inciCompletionDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Address"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.inciKwd.inciAddress}"/>
+                        <h:outputText value="X"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.inciKwd.inciX}"/>
+                        <h:outputText value="Y"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.inciKwd.inciY}"/>
+                        <h:outputText value="Zip"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.inciKwd.inciZip}"/>
+                        <h:outputText value="Ward"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.inciKwd.inciWard}"/>
+                        <h:outputText value="Community Area"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.inciKwd.inciCommArea}"/>
+                        <h:outputText value="Police District"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.inciKwd.inciPoliceDistrict}"/>
+                        <h:outputText value="Latitude"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.inciKwd.inciLatitude}"/>
+                        <h:outputText value="Longitude"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.inciKwd.inciLongitude}"/>
+                        <h:outputText value="#{bundle.ViewP1TreeDebrisLabel_treeDebrLocation}"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.treeDebrLocation}" title="#{bundle.ViewP1TreeDebrisTitle_treeDebrLocation}"/>
+                        <h:outputText value="#{bundle.ViewP1TreeDebrisLabel_treeDebrActivity}"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.treeDebrActivity}" title="#{bundle.ViewP1TreeDebrisTitle_treeDebrActivity}"/>
+                        <h:outputText value="#{bundle.ViewP1TreeDebrisLabel_treeDebrRecentAction}"/>
+                        <h:outputText value="#{p1TreeDebrisController.selected.treeDebrRecentAction}" title="#{bundle.ViewP1TreeDebrisTitle_treeDebrRecentAction}"/>
+                       
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PF('P1TreeDebrisViewDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

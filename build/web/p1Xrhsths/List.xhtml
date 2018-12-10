@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListP1XrhsthsTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="P1XrhsthsListForm">
+                <p:outputPanel rendered="#{eisodosController.selected != null}">
+                    <h:outputText value="Λογαριασμός χρήστη: "/>
+                    <h:outputText value="#{eisodosController.selected.xrhsUsername}"/><br/>
+                    <h:outputText value="Στοιχεία χρήστη: "/>
+                    <h:outputText value="#{eisodosController.selected.xrhsFname} #{eisodosController.selected.xrhsLname}" /><br/>
+                </p:outputPanel>
+                <p:panel header="#{bundle.ListP1XrhsthsTitle}">
+                    <p:dataTable id="datalist" value="#{p1XrhsthsController.items}" var="item"
+                                 selectionMode="single" selection="#{p1XrhsthsController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.xrhsKwd}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1XrhsthsTitle_xrhsUsername}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xrhsUsername}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1XrhsthsTitle_xrhsFname}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xrhsFname}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1XrhsthsTitle_xrhsLname}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xrhsLname}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1XrhsthsTitle_xrhsAddress}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xrhsAddress}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1XrhsthsTitle_xrhsEmail}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xrhsEmail}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1XrhsthsTitle_xrhsType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xrhsType==1?'Sophisticated':'Common'} user"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{p1XrhsthsController.prepareCreate}" update=":P1XrhsthsCreateForm" oncomplete="PF('P1XrhsthsCreateDialog').show()" rendered="#{eisodosController.selected.xrhsType==1}"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":P1XrhsthsViewForm" oncomplete="PF('P1XrhsthsViewDialog').show()" disabled="#{empty p1XrhsthsController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":P1XrhsthsEditForm" oncomplete="PF('P1XrhsthsEditDialog').show()" disabled="#{empty p1XrhsthsController.selected}" rendered="#{eisodosController.selected.xrhsType==1}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{p1XrhsthsController.destroy}" update=":growl,datalist" disabled="#{empty p1XrhsthsController.selected}" rendered="#{eisodosController.selected.xrhsType==1}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1GraffitiViewDlg" widgetVar="P1GraffitiViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewP1GraffitiTitle}">
+            <h:form id="P1GraffitiViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" rendered="#{p1GraffitiController.selected != null}">
+                        <h:outputText value="Creation Date"/>
+                        <h:outputText value="#{p1GraffitiController.selected.inciKwd.inciCreationDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Status"/>
+                        <h:outputText value="#{p1GraffitiController.selected.inciKwd.inciStatus}"/>
+                        <h:outputText value="Request Number"/>
+                        <h:outputText value="#{p1GraffitiController.selected.inciKwd.inciRequestNum}"/>
+                        <h:outputText value="Completion Date"/>
+                        <h:outputText value="#{p1GraffitiController.selected.inciKwd.inciCompletionDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Address"/>
+                        <h:outputText value="#{p1GraffitiController.selected.inciKwd.inciAddress}"/>
+                        <h:outputText value="X"/>
+                        <h:outputText value="#{p1GraffitiController.selected.inciKwd.inciX}"/>
+                        <h:outputText value="Y"/>
+                        <h:outputText value="#{p1GraffitiController.selected.inciKwd.inciY}"/>
+                        <h:outputText value="Zip"/>
+                        <h:outputText value="#{p1GraffitiController.selected.inciKwd.inciZip}"/>
+                        <h:outputText value="Ward"/>
+                        <h:outputText value="#{p1GraffitiController.selected.inciKwd.inciWard}"/>
+                        <h:outputText value="Community Area"/>
+                        <h:outputText value="#{p1GraffitiController.selected.inciKwd.inciCommArea}"/>
+                        <h:outputText value="Police District"/>
+                        <h:outputText value="#{p1GraffitiController.selected.inciKwd.inciPoliceDistrict}"/>
+                        <h:outputText value="Latitude"/>
+                        <h:outputText value="#{p1GraffitiController.selected.inciKwd.inciLatitude}"/>
+                        <h:outputText value="Longitude"/>
+                        <h:outputText value="#{p1GraffitiController.selected.inciKwd.inciLongitude}"/>
+                        <h:outputText value="#{bundle.ViewP1GraffitiLabel_grafSurface}"/>
+                        <h:outputText value="#{p1GraffitiController.selected.grafSurface}" title="#{bundle.ViewP1GraffitiTitle_grafSurface}"/>
+                        <h:outputText value="#{bundle.ViewP1GraffitiLabel_grafLocation}"/>
+                        <h:outputText value="#{p1GraffitiController.selected.grafLocation}" title="#{bundle.ViewP1GraffitiTitle_grafLocation}"/>
+                        <h:outputText value="#{bundle.ViewP1GraffitiLabel_grafSsa}"/>
+                        <h:outputText value="#{p1GraffitiController.selected.grafSsa}" title="#{bundle.ViewP1GraffitiTitle_grafSsa}"/>
+                        
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PF('P1GraffitiViewDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

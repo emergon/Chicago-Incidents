@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1XrhsthsEditDlg" widgetVar="P1XrhsthsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditP1XrhsthsTitle}">
+            <h:form id="P1XrhsthsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{p1XrhsthsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditP1XrhsthsLabel_xrhsUsername}" for="xrhsUsername" />
+                        <p:inputText id="xrhsUsername" value="#{p1XrhsthsController.selected.xrhsUsername}" title="#{bundle.EditP1XrhsthsTitle_xrhsUsername}" />
+                        <p:outputLabel value="#{bundle.EditP1XrhsthsLabel_xrhsFname}" for="xrhsFname" />
+                        <p:inputText id="xrhsFname" value="#{p1XrhsthsController.selected.xrhsFname}" title="#{bundle.EditP1XrhsthsTitle_xrhsFname}" />
+                        <p:outputLabel value="#{bundle.EditP1XrhsthsLabel_xrhsLname}" for="xrhsLname" />
+                        <p:inputText id="xrhsLname" value="#{p1XrhsthsController.selected.xrhsLname}" title="#{bundle.EditP1XrhsthsTitle_xrhsLname}" />
+                        <p:outputLabel value="#{bundle.EditP1XrhsthsLabel_xrhsAddress}" for="xrhsAddress" />
+                        <p:inputText id="xrhsAddress" value="#{p1XrhsthsController.selected.xrhsAddress}" title="#{bundle.EditP1XrhsthsTitle_xrhsAddress}" />
+                        <p:outputLabel value="#{bundle.EditP1XrhsthsLabel_xrhsEmail}" for="xrhsEmail" />
+                        <p:inputText id="xrhsEmail" value="#{p1XrhsthsController.selected.xrhsEmail}" title="#{bundle.EditP1XrhsthsTitle_xrhsEmail}" />
+                        <p:outputLabel value="#{bundle.EditP1XrhsthsLabel_xrhsType}" for="xrhsType" />
+                        <p:inputText id="xrhsType" value="#{p1XrhsthsController.selected.xrhsType}" title="#{bundle.EditP1XrhsthsTitle_xrhsType}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{eisodosController.arxikopoihshPassword(p1XrhsthsController.selected)}" value="Reset Password" update="display,:P1XrhsthsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'P1XrhsthsEditDialog');"/>
+                    <p:commandButton actionListener="#{p1XrhsthsController.update}" value="#{bundle.Save}" update="display,:P1XrhsthsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'P1XrhsthsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PF('P1XrhsthsEditDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

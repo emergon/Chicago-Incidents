@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1IncidentsViewDlg" widgetVar="P1IncidentsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewP1IncidentsTitle}">
+            <h:form id="P1IncidentsViewForm">
+                <h:panelGroup id="display">
+                    <p:panel header="Incident's fields">
+                        <p:panelGrid columns="4" rendered="#{p1IncidentsController.selected != null}">
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_inciKwd}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.inciKwd}" title="#{bundle.ViewP1IncidentsTitle_inciKwd}"/>
+
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_inciCreationDate}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.inciCreationDate}" title="#{bundle.ViewP1IncidentsTitle_inciCreationDate}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_inciCompletionDate}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.inciCompletionDate}" title="#{bundle.ViewP1IncidentsTitle_inciCompletionDate}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_inciRequestNum}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.inciRequestNum}" title="#{bundle.ViewP1IncidentsTitle_inciRequestNum}"/>
+
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_inciAddress}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.inciAddress}" title="#{bundle.ViewP1IncidentsTitle_inciAddress}"/>
+
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_inciZip}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.inciZip}" title="#{bundle.ViewP1IncidentsTitle_inciZip}"/>
+
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_inciX}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.inciX}" title="#{bundle.ViewP1IncidentsTitle_inciX}"/>
+
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_inciY}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.inciY}" title="#{bundle.ViewP1IncidentsTitle_inciY}"/>
+
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_inciWard}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.inciWard}" title="#{bundle.ViewP1IncidentsTitle_inciWard}"/>
+
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_inciPoliceDistrict}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.inciPoliceDistrict}" title="#{bundle.ViewP1IncidentsTitle_inciPoliceDistrict}"/>
+
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_inciCommArea}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.inciCommArea}" title="#{bundle.ViewP1IncidentsTitle_inciCommArea}"/>
+
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_inciLatitude}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.inciLatitude}" title="#{bundle.ViewP1IncidentsTitle_inciLatitude}"/>
+
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_inciLongitude}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.inciLongitude}" title="#{bundle.ViewP1IncidentsTitle_inciLongitude}"/>
+
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_inciRequestType}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.inciRequestType.inciTypeName}" title="#{bundle.ViewP1IncidentsTitle_inciRequestType}"/>
+
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_inciStatus}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.inciStatus.statName}" title="#{bundle.ViewP1IncidentsTitle_inciStatus}"/>
+
+                            <h:outputText value="#{bundle.ViewP1IncidentsLabel_xrhsKwd}"/>
+                            <h:outputText value="#{p1IncidentsController.selected.xrhsKwd.xrhsUsername}" title="#{bundle.ViewP1IncidentsTitle_xrhsKwd}"/>
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Abandoned Vehicle fields" rendered="#{p1IncidentsController.selected.inciRequestType.inciTypeId == 1}">
+                        <p:panelGrid columns="4"  >
+                            <h:outputText value="#{bundle.ViewP1AbandonedVehicleLabel_abanVehiPlate}"/>
+                            <h:outputText value="#{p1AbandonedVehicleController.selected.abanVehiPlate}" title="#{bundle.ViewP1AbandonedVehicleTitle_abanVehiPlate}"/>
+                            <h:outputText value="#{bundle.ViewP1AbandonedVehicleLabel_abanVehiModel}"/>
+                            <h:outputText value="#{p1AbandonedVehicleController.selected.abanVehiModel}" title="#{bundle.ViewP1AbandonedVehicleTitle_abanVehiModel}"/>
+                            <h:outputText value="#{bundle.ViewP1AbandonedVehicleLabel_abanVehiDaysParked}"/>
+                            <h:outputText value="#{p1AbandonedVehicleController.selected.abanVehiDaysParked}" title="#{bundle.ViewP1AbandonedVehicleTitle_abanVehiDaysParked}"/>
+                            <h:outputText value="#{bundle.ViewP1AbandonedVehicleLabel_abanVehiSsa}"/>
+                            <h:outputText value="#{p1AbandonedVehicleController.selected.abanVehiSsa}" title="#{bundle.ViewP1AbandonedVehicleTitle_abanVehiSsa}"/>
+                            <h:outputText value="#{bundle.ViewP1AbandonedVehicleLabel_abanVehiColor}"/>
+                            <h:outputText value="#{p1AbandonedVehicleController.selected.abanVehiColor.coloName}" title="#{bundle.ViewP1AbandonedVehicleTitle_abanVehiColor}"/>
+                            <h:outputText value="#{bundle.ViewP1AbandonedVehicleLabel_abanVehiActivity}"/>
+                            <h:outputText value="#{p1AbandonedVehicleController.selected.abanVehiActivity.currActiName}" title="#{bundle.ViewP1AbandonedVehicleTitle_abanVehiActivity}"/>
+                            <h:outputText value="#{bundle.ViewP1AbandonedVehicleLabel_inciKwd}"/>
+                            <h:outputText value="#{p1AbandonedVehicleController.selected.inciKwd}" title="#{bundle.ViewP1AbandonedVehicleTitle_inciKwd}"/>
+                            <h:outputText value="#{bundle.ViewP1AbandonedVehicleLabel_abanVehiRecentAction}"/>
+                            <h:outputText value="#{p1AbandonedVehicleController.selected.abanVehiRecentAction.receActiName}" title="#{bundle.ViewP1AbandonedVehicleTitle_abanVehiRecentAction}"/>
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Garbage Cart fields" rendered="#{p1IncidentsController.selected.inciRequestType.inciTypeId == 3}">
+                        <p:panelGrid columns="4" >
+                            <h:outputText value="#{bundle.ViewP1GarbageCartLabel_garbCartDelivered}"/>
+                            <h:outputText value="#{p1GarbageCartController.selected.garbCartDelivered}" title="#{bundle.ViewP1GarbageCartTitle_garbCartDelivered}"/>
+                            <h:outputText value="#{bundle.ViewP1GarbageCartLabel_garbCartSsa}"/>
+                            <h:outputText value="#{p1GarbageCartController.selected.garbCartSsa}" title="#{bundle.ViewP1GarbageCartTitle_garbCartSsa}"/>
+                            <h:outputText value="#{bundle.ViewP1GarbageCartLabel_garbCartActivity}"/>
+                            <h:outputText value="#{p1GarbageCartController.selected.garbCartActivity.currActiName}" title="#{bundle.ViewP1GarbageCartTitle_garbCartActivity}"/>
+                            <h:outputText value="#{bundle.ViewP1GarbageCartLabel_garbCartRecentAction}"/>
+                            <h:outputText value="#{p1GarbageCartController.selected.garbCartRecentAction.receActiName}" title="#{bundle.ViewP1GarbageCartTitle_garbCartRecentAction}"/>
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Graffiti fields" rendered="#{p1IncidentsController.selected.inciRequestType.inciTypeId == 4}">
+                        <p:panelGrid columns="4" >
+                            <h:outputText value="#{bundle.ViewP1GraffitiLabel_grafSurface}"/>
+                            <h:outputText value="#{p1GraffitiController.selected.grafSurface}" title="#{bundle.ViewP1GraffitiTitle_grafSurface}"/>
+                            <h:outputText value="#{bundle.ViewP1GraffitiLabel_grafLocation}"/>
+                            <h:outputText value="#{p1GraffitiController.selected.grafLocation}" title="#{bundle.ViewP1GraffitiTitle_grafLocation}"/>
+                            <h:outputText value="#{bundle.ViewP1GraffitiLabel_grafSsa}"/>
+                            <h:outputText value="#{p1GraffitiController.selected.grafSsa}" title="#{bundle.ViewP1GraffitiTitle_grafSsa}"/>
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Potholes fields" rendered="#{p1IncidentsController.selected.inciRequestType.inciTypeId == 5}">
+                        <p:panelGrid columns="4" >
+                            <h:outputText value="#{bundle.ViewP1PotholesLabel_pothFilled}"/>
+                            <h:outputText value="#{p1PotholesController.selected.pothFilled}" title="#{bundle.ViewP1PotholesTitle_pothFilled}"/>
+                            <h:outputText value="#{bundle.ViewP1PotholesLabel_pothSsa}"/>
+                            <h:outputText value="#{p1PotholesController.selected.pothSsa}" title="#{bundle.ViewP1PotholesTitle_pothSsa}"/>
+                            <h:outputText value="#{bundle.ViewP1PotholesLabel_pothActivity}"/>
+                            <h:outputText value="#{p1PotholesController.selected.pothActivity.currActiName}" title="#{bundle.ViewP1PotholesTitle_pothActivity}"/>
+                            <h:outputText value="#{bundle.ViewP1PotholesLabel_pothRecentAction}"/>
+                            <h:outputText value="#{p1PotholesController.selected.pothRecentAction.receActiName}" title="#{bundle.ViewP1PotholesTitle_pothRecentAction}"/>
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Rodent fields" rendered="#{p1IncidentsController.selected.inciRequestType.inciTypeId == 6}">
+                        <p:panelGrid columns="4" >
+                            <h:outputText value="#{bundle.ViewP1RodentLabel_rodePremisesBaited}"/>
+                            <h:outputText value="#{p1RodentController.selected.rodePremisesBaited}" title="#{bundle.ViewP1RodentTitle_rodePremisesBaited}"/>
+                            <h:outputText value="#{bundle.ViewP1RodentLabel_rodePremisesGarbaged}"/>
+                            <h:outputText value="#{p1RodentController.selected.rodePremisesGarbaged}" title="#{bundle.ViewP1RodentTitle_rodePremisesGarbaged}"/>
+                            <h:outputText value="#{bundle.ViewP1RodentLabel_rodePremisesRats}"/>
+                            <h:outputText value="#{p1RodentController.selected.rodePremisesRats}" title="#{bundle.ViewP1RodentTitle_rodePremisesRats}"/>
+                            <h:outputText value="#{bundle.ViewP1RodentLabel_rodeActivity}"/>
+                            <h:outputText value="#{p1RodentController.selected.rodeActivity.currActiName}" title="#{bundle.ViewP1RodentTitle_rodeActivity}"/>
+                            <h:outputText value="#{bundle.ViewP1RodentLabel_rodeRecentAction}"/>
+                            <h:outputText value="#{p1RodentController.selected.rodeRecentAction.receActiName}" title="#{bundle.ViewP1RodentTitle_rodeRecentAction}"/>
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Sanitation fields" rendered="#{p1IncidentsController.selected.inciRequestType.inciTypeId == 7}">
+                        <p:panelGrid columns="4" >
+                            <h:outputText value="#{bundle.ViewP1SanitationLabel_saniNature}"/>
+                            <h:outputText value="#{p1SanitationController.selected.saniNature}" title="#{bundle.ViewP1SanitationTitle_saniNature}"/>
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Tree Debris fields" rendered="#{p1IncidentsController.selected.inciRequestType.inciTypeId == 10}" >
+                        <p:panelGrid columns="4">
+                            <h:outputText value="#{bundle.ViewP1TreeDebrisLabel_treeDebrLocation}"/>
+                            <h:outputText value="#{p1TreeDebrisController.selected.treeDebrLocation}" title="#{bundle.ViewP1TreeDebrisTitle_treeDebrLocation}"/>
+                            <h:outputText value="#{bundle.ViewP1TreeDebrisLabel_treeDebrActivity}"/>
+                            <h:outputText value="#{p1TreeDebrisController.selected.treeDebrActivity}" title="#{bundle.ViewP1TreeDebrisTitle_treeDebrActivity}"/>
+                            <h:outputText value="#{bundle.ViewP1TreeDebrisLabel_treeDebrRecentAction}"/>
+                            <h:outputText value="#{p1TreeDebrisController.selected.treeDebrRecentAction}" title="#{bundle.ViewP1TreeDebrisTitle_treeDebrRecentAction}"/>
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Tree Trims fields" rendered="#{p1IncidentsController.selected.inciRequestType.inciTypeId == 11}">
+                        <p:panelGrid columns="4" >
+                            <h:outputText value="#{bundle.ViewP1TreeTrimsLabel_treeTrimLocation}"/>
+                            <h:outputText value="#{p1TreeTrimsController.selected.treeTrimLocation}" title="#{bundle.ViewP1TreeTrimsTitle_treeTrimLocation}"/>
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:commandButton value="#{bundle.Close}" onclick="PF('P1IncidentsViewDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

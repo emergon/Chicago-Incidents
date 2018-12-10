@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1RecentActionEditDlg" widgetVar="P1RecentActionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditP1RecentActionTitle}">
+            <h:form id="P1RecentActionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{p1RecentActionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditP1RecentActionLabel_receActiId}" for="receActiId" />
+                        <p:inputText id="receActiId" value="#{p1RecentActionController.selected.receActiId}" title="#{bundle.EditP1RecentActionTitle_receActiId}" required="true" requiredMessage="#{bundle.EditP1RecentActionRequiredMessage_receActiId}"/>
+                        <p:outputLabel value="#{bundle.EditP1RecentActionLabel_receActiName}" for="receActiName" />
+                        <p:inputText id="receActiName" value="#{p1RecentActionController.selected.receActiName}" title="#{bundle.EditP1RecentActionTitle_receActiName}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{p1RecentActionController.update}" value="#{bundle.Save}" update="display,:P1RecentActionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'P1RecentActionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PF('P1RecentActionEditDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

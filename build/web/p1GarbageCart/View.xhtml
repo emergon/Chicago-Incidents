@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1GarbageCartViewDlg" widgetVar="P1GarbageCartViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewP1GarbageCartTitle}">
+            <h:form id="P1GarbageCartViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" rendered="#{p1GarbageCartController.selected != null}">
+                        <h:outputText value="Creation Date"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.inciKwd.inciCreationDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Status"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.inciKwd.inciStatus}"/>
+                        <h:outputText value="Request Number"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.inciKwd.inciRequestNum}"/>
+                        <h:outputText value="Completion Date"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.inciKwd.inciCompletionDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Address"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.inciKwd.inciAddress}"/>
+                        <h:outputText value="X"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.inciKwd.inciX}"/>
+                        <h:outputText value="Y"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.inciKwd.inciY}"/>
+                        <h:outputText value="Zip"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.inciKwd.inciZip}"/>
+                        <h:outputText value="Ward"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.inciKwd.inciWard}"/>
+                        <h:outputText value="Community Area"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.inciKwd.inciCommArea}"/>
+                        <h:outputText value="Police District"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.inciKwd.inciPoliceDistrict}"/>
+                        <h:outputText value="Latitude"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.inciKwd.inciLatitude}"/>
+                        <h:outputText value="Longitude"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.inciKwd.inciLongitude}"/>
+                        <h:outputText value="#{bundle.ViewP1GarbageCartLabel_garbCartDelivered}"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.garbCartDelivered}" title="#{bundle.ViewP1GarbageCartTitle_garbCartDelivered}"/>
+                        <h:outputText value="#{bundle.ViewP1GarbageCartLabel_garbCartSsa}"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.garbCartSsa}" title="#{bundle.ViewP1GarbageCartTitle_garbCartSsa}"/>
+                        <h:outputText value="#{bundle.ViewP1GarbageCartLabel_garbCartActivity}"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.garbCartActivity.currActiName}" title="#{bundle.ViewP1GarbageCartTitle_garbCartActivity}"/>
+                        <h:outputText value="#{bundle.ViewP1GarbageCartLabel_garbCartRecentAction}"/>
+                        <h:outputText value="#{p1GarbageCartController.selected.garbCartRecentAction.receActiName}" title="#{bundle.ViewP1GarbageCartTitle_garbCartRecentAction}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PF('P1GarbageCartViewDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

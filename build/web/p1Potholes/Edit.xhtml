@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1PotholesEditDlg" widgetVar="P1PotholesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditP1PotholesTitle}">
+            <h:form id="P1PotholesEditForm">
+                <h:panelGroup id="display">
+                    <p:panel header="Incident's fields">
+                        <p:panelGrid columns="2" rendered="#{p1IncidentsController.selected != null}">
+                            <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciCreationDate}" for="inciCreationDate" />
+                            <p:calendar id="inciCreationDate" pattern="dd/MM/yyyy" value="#{p1IncidentsController.selected.inciCreationDate}" 
+                                        title="#{bundle.EditP1IncidentsTitle_inciCreationDate}"  showOn="button"
+                                        required="true" requiredMessage="Date Creation field is required"/>
+                            <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciRequestNum}" for="inciRequestNum" />
+                            <h:outputText id="inciRequestNum" value="#{p1IncidentsController.selected.inciRequestNum}" title="#{bundle.CreateP1IncidentsTitle_inciRequestNum}" />
+                            <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciAddress}" for="inciAddress" />
+                            <p:inputText id="inciAddress" value="#{p1IncidentsController.selected.inciAddress}" 
+                                         title="#{bundle.CreateP1IncidentsTitle_inciAddress}"
+                                         required="true" requiredMessage="Address field is required"/>
+                            <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciZip}" for="inciZip" />
+                            <p:selectOneMenu id="inciZip" value="#{p1IncidentsController.selected.inciZip}" >
+                                <f:selectItems value="#{p1IncidentsController.fereZipCodes()}"
+                                               var="zipItem"
+                                               itemValue="#{zipItem}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciX}" for="inciX" />
+                            <p:inputText id="inciX" value="#{p1IncidentsController.selected.inciX}" title="#{bundle.CreateP1IncidentsTitle_inciX}" />
+                            <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciY}" for="inciY" />
+                            <p:inputText id="inciY" value="#{p1IncidentsController.selected.inciY}" title="#{bundle.CreateP1IncidentsTitle_inciY}" />
+                            <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciWard}" for="inciWard" />
+                            <p:selectOneMenu id="inciWard" value="#{p1IncidentsController.selected.inciWard}" >
+                                <f:selectItems value="#{p1IncidentsController.fereWards()}"
+                                               var="wardItem"
+                                               itemValue="#{wardItem}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciPoliceDistrict}" for="inciPoliceDistrict" />
+                            <p:selectOneMenu id="inciPoliceDistrict" value="#{p1IncidentsController.selected.inciPoliceDistrict}" >
+                                <f:selectItems value="#{p1IncidentsController.ferePoliceDistricts()}"
+                                               var="inciPoliceDistrictItem"
+                                               itemValue="#{inciPoliceDistrictItem}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciCommArea}" for="inciCommArea" />
+                            <p:selectOneMenu id="inciCommArea" value="#{p1IncidentsController.selected.inciCommArea}" >
+                                <f:selectItems value="#{p1IncidentsController.fereCommAreas()}"
+                                               var="inciCommAreaItem"
+                                               itemValue="#{inciCommAreaItem}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciLatitude}" for="inciLatitude" />
+                            <p:inputText id="inciLatitude" value="#{p1IncidentsController.selected.inciLatitude}" title="#{bundle.CreateP1IncidentsTitle_inciLatitude}" />
+                            <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_inciLongitude}" for="inciLongitude" />
+                            <p:inputText id="inciLongitude" value="#{p1IncidentsController.selected.inciLongitude}" title="#{bundle.CreateP1IncidentsTitle_inciLongitude}" />
+
+
+                            <p:outputLabel value="#{bundle.CreateP1IncidentsLabel_xrhsKwd}" for="xrhsKwd" />
+                            <h:outputText id="xrhsKwd" value="#{eisodosController.selected.xrhsUsername}"/>
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Potholes fields">
+                        <p:panelGrid columns="2" rendered="#{p1PotholesController.selected != null}">
+                            <p:outputLabel value="#{bundle.CreateP1PotholesLabel_pothFilled}" for="pothFilled" />
+                            <p:inputText id="pothFilled" value="#{p1PotholesController.selected.pothFilled}" title="#{bundle.CreateP1PotholesTitle_pothFilled}" />
+                            <p:outputLabel value="#{bundle.CreateP1PotholesLabel_pothSsa}" for="pothSsa" />
+                            <p:inputText id="pothSsa" value="#{p1PotholesController.selected.pothSsa}" title="#{bundle.CreateP1PotholesTitle_pothSsa}" />
+                            <p:outputLabel value="#{bundle.CreateP1PotholesLabel_pothActivity}" for="pothActivity" />
+                            <p:selectOneMenu id="pothActivity" value="#{p1PotholesController.selected.pothActivity}" >
+                                <f:selectItems value="#{p1CurrentActivityController.itemsAvailableSelectOne}"
+                                               var="pothActivityItem"
+                                               itemValue="#{pothActivityItem}"
+                                               itemLabel="#{pothActivityItem.currActiName}"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="#{bundle.CreateP1PotholesLabel_pothRecentAction}" for="pothRecentAction" />
+                            <p:selectOneMenu id="pothRecentAction" value="#{p1PotholesController.selected.pothRecentAction}" >
+                                <f:selectItems value="#{p1RecentActionController.itemsAvailableSelectOne}"
+                                               var="pothRecentActionItem"
+                                               itemValue="#{pothRecentActionItem}"
+                                               itemLabel="#{pothRecentActionItem.receActiName}"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:commandButton actionListener="#{p1PotholesController.update}" value="#{bundle.Save}" update="display,:P1PotholesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'P1PotholesEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PF('P1PotholesEditDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

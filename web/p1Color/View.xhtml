@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1ColorViewDlg" widgetVar="P1ColorViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewP1ColorTitle}">
+            <h:form id="P1ColorViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{p1ColorController.selected != null}">
+                        <h:outputText value="#{bundle.ViewP1ColorLabel_coloId}"/>
+                        <h:outputText value="#{p1ColorController.selected.coloId}" title="#{bundle.ViewP1ColorTitle_coloId}"/>
+                        <h:outputText value="#{bundle.ViewP1ColorLabel_coloName}"/>
+                        <h:outputText value="#{p1ColorController.selected.coloName}" title="#{bundle.ViewP1ColorTitle_coloName}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PF('P1ColorViewDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

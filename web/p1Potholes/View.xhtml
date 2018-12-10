@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1PotholesViewDlg" widgetVar="P1PotholesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewP1PotholesTitle}">
+            <h:form id="P1PotholesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" rendered="#{p1PotholesController.selected != null}">
+                        <h:outputText value="Creation Date"/>
+                        <h:outputText value="#{p1PotholesController.selected.inciKwd.inciCreationDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Status"/>
+                        <h:outputText value="#{p1PotholesController.selected.inciKwd.inciStatus}"/>
+                        <h:outputText value="Request Number"/>
+                        <h:outputText value="#{p1PotholesController.selected.inciKwd.inciRequestNum}"/>
+                        <h:outputText value="Completion Date"/>
+                        <h:outputText value="#{p1PotholesController.selected.inciKwd.inciCompletionDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Address"/>
+                        <h:outputText value="#{p1PotholesController.selected.inciKwd.inciAddress}"/>
+                        <h:outputText value="X"/>
+                        <h:outputText value="#{p1PotholesController.selected.inciKwd.inciX}"/>
+                        <h:outputText value="Y"/>
+                        <h:outputText value="#{p1PotholesController.selected.inciKwd.inciY}"/>
+                        <h:outputText value="Zip"/>
+                        <h:outputText value="#{p1PotholesController.selected.inciKwd.inciZip}"/>
+                        <h:outputText value="Ward"/>
+                        <h:outputText value="#{p1PotholesController.selected.inciKwd.inciWard}"/>
+                        <h:outputText value="Community Area"/>
+                        <h:outputText value="#{p1PotholesController.selected.inciKwd.inciCommArea}"/>
+                        <h:outputText value="Police District"/>
+                        <h:outputText value="#{p1PotholesController.selected.inciKwd.inciPoliceDistrict}"/>
+                        <h:outputText value="Latitude"/>
+                        <h:outputText value="#{p1PotholesController.selected.inciKwd.inciLatitude}"/>
+                        <h:outputText value="Longitude"/>
+                        <h:outputText value="#{p1PotholesController.selected.inciKwd.inciLongitude}"/>
+                        <h:outputText value="#{bundle.ViewP1PotholesLabel_pothFilled}"/>
+                        <h:outputText value="#{p1PotholesController.selected.pothFilled}" title="#{bundle.ViewP1PotholesTitle_pothFilled}"/>
+                        <h:outputText value="#{bundle.ViewP1PotholesLabel_pothSsa}"/>
+                        <h:outputText value="#{p1PotholesController.selected.pothSsa}" title="#{bundle.ViewP1PotholesTitle_pothSsa}"/>
+                        <h:outputText value="#{bundle.ViewP1PotholesLabel_pothActivity}"/>
+                        <h:outputText value="#{p1PotholesController.selected.pothActivity.currActiName}" title="#{bundle.ViewP1PotholesTitle_pothActivity}"/>
+                        <h:outputText value="#{bundle.ViewP1PotholesLabel_pothRecentAction}"/>
+                        <h:outputText value="#{p1PotholesController.selected.pothRecentAction.receActiName}" title="#{bundle.ViewP1PotholesTitle_pothRecentAction}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PF('P1PotholesViewDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

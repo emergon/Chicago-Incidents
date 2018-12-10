@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="Premises Baited"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form> 
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel for="arithmos" value="Show premises baited less than: " />
+                    <p:inputNumber id="arithmos" value="#{p1RodentController.numberForPremises}" decimalPlaces="0"/> 
+                    <p:commandButton value="Submit" id="ajax" update="datalist" action="#{p1RodentController.fillRodentPremisesBaitedLazy()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                </h:panelGrid>
+
+                <p:panel header="Rodent Premises Baited" rendered="#{p1RodentController.itemsRodentPremisesBaitedLazy!=null}" >
+                    <p:dataTable id="datalist" value="#{p1RodentController.itemsRodentPremisesBaitedLazy}" var="item"
+                                 paginator="true"
+                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,15,20"
+                                 lazy="true"
+                                 >
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1RodentTitle_rodeId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rodeId}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1RodentTitle_rodePremisesBaited}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rodePremisesBaited}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1RodentTitle_rodePremisesGarbaged}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rodePremisesGarbaged}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1RodentTitle_rodePremisesRats}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rodePremisesRats}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1RodentTitle_rodeActivity}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rodeActivity}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1RodentTitle_inciKwd}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciKwd}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1RodentTitle_rodeRecentAction}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rodeRecentAction}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1XrhsthActionViewDlg" widgetVar="P1XrhsthActionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewP1XrhsthActionTitle}">
+            <h:form id="P1XrhsthActionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{p1XrhsthActionController.selected != null}">
+                        <h:outputText value="#{bundle.ViewP1XrhsthActionLabel_xrhsActiKwd}"/>
+                        <h:outputText value="#{p1XrhsthActionController.selected.xrhsActiKwd}" title="#{bundle.ViewP1XrhsthActionTitle_xrhsActiKwd}"/>
+                        <h:outputText value="#{bundle.ViewP1XrhsthActionLabel_xrhsActiPerigrafh}"/>
+                        <h:outputText value="#{p1XrhsthActionController.selected.xrhsActiPerigrafh}" title="#{bundle.ViewP1XrhsthActionTitle_xrhsActiPerigrafh}"/>
+                        <h:outputText value="#{bundle.ViewP1XrhsthActionLabel_xrhsActiTime}"/>
+                        <h:outputText value="#{p1XrhsthActionController.selected.xrhsActiTime}" title="#{bundle.ViewP1XrhsthActionTitle_xrhsActiTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewP1XrhsthActionLabel_xrhsKwd}"/>
+                        <h:outputText value="#{p1XrhsthActionController.selected.xrhsKwd}" title="#{bundle.ViewP1XrhsthActionTitle_xrhsKwd}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="P1XrhsthActionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

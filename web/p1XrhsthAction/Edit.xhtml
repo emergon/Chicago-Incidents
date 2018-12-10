@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1XrhsthActionEditDlg" widgetVar="P1XrhsthActionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditP1XrhsthActionTitle}">
+            <h:form id="P1XrhsthActionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{p1XrhsthActionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditP1XrhsthActionLabel_xrhsActiKwd}" for="xrhsActiKwd" />
+                        <p:inputText id="xrhsActiKwd" value="#{p1XrhsthActionController.selected.xrhsActiKwd}" title="#{bundle.EditP1XrhsthActionTitle_xrhsActiKwd}" required="true" requiredMessage="#{bundle.EditP1XrhsthActionRequiredMessage_xrhsActiKwd}"/>
+                        <p:outputLabel value="#{bundle.EditP1XrhsthActionLabel_xrhsActiPerigrafh}" for="xrhsActiPerigrafh" />
+                        <p:inputText id="xrhsActiPerigrafh" value="#{p1XrhsthActionController.selected.xrhsActiPerigrafh}" title="#{bundle.EditP1XrhsthActionTitle_xrhsActiPerigrafh}" />
+                        <p:outputLabel value="#{bundle.EditP1XrhsthActionLabel_xrhsActiTime}" for="xrhsActiTime" />
+                        <p:calendar id="xrhsActiTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{p1XrhsthActionController.selected.xrhsActiTime}" title="#{bundle.EditP1XrhsthActionTitle_xrhsActiTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditP1XrhsthActionLabel_xrhsKwd}" for="xrhsKwd" />
+                        <p:selectOneMenu id="xrhsKwd" value="#{p1XrhsthActionController.selected.xrhsKwd}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{p1XrhsthsController.itemsAvailableSelectOne}"
+                                           var="xrhsKwdItem"
+                                           itemValue="#{xrhsKwdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{p1XrhsthActionController.update}" value="#{bundle.Save}" update="display,:P1XrhsthActionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'P1XrhsthActionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="P1XrhsthActionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1RecentActionViewDlg" widgetVar="P1RecentActionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewP1RecentActionTitle}">
+            <h:form id="P1RecentActionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{p1RecentActionController.selected != null}">
+                        <h:outputText value="#{bundle.ViewP1RecentActionLabel_receActiId}"/>
+                        <h:outputText value="#{p1RecentActionController.selected.receActiId}" title="#{bundle.ViewP1RecentActionTitle_receActiId}"/>
+                        <h:outputText value="#{bundle.ViewP1RecentActionLabel_receActiName}"/>
+                        <h:outputText value="#{p1RecentActionController.selected.receActiName}" title="#{bundle.ViewP1RecentActionTitle_receActiName}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PF('P1RecentActionViewDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

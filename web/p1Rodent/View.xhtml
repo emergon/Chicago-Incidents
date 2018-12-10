@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1RodentViewDlg" widgetVar="P1RodentViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewP1RodentTitle}">
+            <h:form id="P1RodentViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" rendered="#{p1RodentController.selected != null}">
+                        <h:outputText value="Creation Date"/>
+                        <h:outputText value="#{p1RodentController.selected.inciKwd.inciCreationDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Status"/>
+                        <h:outputText value="#{p1RodentController.selected.inciKwd.inciStatus}"/>
+                        <h:outputText value="Request Number"/>
+                        <h:outputText value="#{p1RodentController.selected.inciKwd.inciRequestNum}"/>
+                        <h:outputText value="Completion Date"/>
+                        <h:outputText value="#{p1RodentController.selected.inciKwd.inciCompletionDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Address"/>
+                        <h:outputText value="#{p1RodentController.selected.inciKwd.inciAddress}"/>
+                        <h:outputText value="X"/>
+                        <h:outputText value="#{p1RodentController.selected.inciKwd.inciX}"/>
+                        <h:outputText value="Y"/>
+                        <h:outputText value="#{p1RodentController.selected.inciKwd.inciY}"/>
+                        <h:outputText value="Zip"/>
+                        <h:outputText value="#{p1RodentController.selected.inciKwd.inciZip}"/>
+                        <h:outputText value="Ward"/>
+                        <h:outputText value="#{p1RodentController.selected.inciKwd.inciWard}"/>
+                        <h:outputText value="Community Area"/>
+                        <h:outputText value="#{p1RodentController.selected.inciKwd.inciCommArea}"/>
+                        <h:outputText value="Police District"/>
+                        <h:outputText value="#{p1RodentController.selected.inciKwd.inciPoliceDistrict}"/>
+                        <h:outputText value="Latitude"/>
+                        <h:outputText value="#{p1RodentController.selected.inciKwd.inciLatitude}"/>
+                        <h:outputText value="Longitude"/>
+                        <h:outputText value="#{p1RodentController.selected.inciKwd.inciLongitude}"/>
+                        <h:outputText value="#{bundle.ViewP1RodentLabel_rodePremisesBaited}"/>
+                        <h:outputText value="#{p1RodentController.selected.rodePremisesBaited}" title="#{bundle.ViewP1RodentTitle_rodePremisesBaited}"/>
+                        <h:outputText value="#{bundle.ViewP1RodentLabel_rodePremisesGarbaged}"/>
+                        <h:outputText value="#{p1RodentController.selected.rodePremisesGarbaged}" title="#{bundle.ViewP1RodentTitle_rodePremisesGarbaged}"/>
+                        <h:outputText value="#{bundle.ViewP1RodentLabel_rodePremisesRats}"/>
+                        <h:outputText value="#{p1RodentController.selected.rodePremisesRats}" title="#{bundle.ViewP1RodentTitle_rodePremisesRats}"/>
+                        <h:outputText value="#{bundle.ViewP1RodentLabel_rodeActivity}"/>
+                        <h:outputText value="#{p1RodentController.selected.rodeActivity.currActiName}" title="#{bundle.ViewP1RodentTitle_rodeActivity}"/>
+                        <h:outputText value="#{bundle.ViewP1RodentLabel_rodeRecentAction}"/>
+                        <h:outputText value="#{p1RodentController.selected.rodeRecentAction.receActiName}" title="#{bundle.ViewP1RodentTitle_rodeRecentAction}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PF('P1RodentViewDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

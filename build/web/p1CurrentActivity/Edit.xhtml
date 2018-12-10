@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1CurrentActivityEditDlg" widgetVar="P1CurrentActivityEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditP1CurrentActivityTitle}">
+            <h:form id="P1CurrentActivityEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{p1CurrentActivityController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditP1CurrentActivityLabel_currActiId}" for="currActiId" />
+                        <p:inputText id="currActiId" value="#{p1CurrentActivityController.selected.currActiId}" title="#{bundle.EditP1CurrentActivityTitle_currActiId}" required="true" requiredMessage="#{bundle.EditP1CurrentActivityRequiredMessage_currActiId}"/>
+                        <p:outputLabel value="#{bundle.EditP1CurrentActivityLabel_currActiName}" for="currActiName" />
+                        <p:inputText id="currActiName" value="#{p1CurrentActivityController.selected.currActiName}" title="#{bundle.EditP1CurrentActivityTitle_currActiName}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{p1CurrentActivityController.update}" value="#{bundle.Save}" update="display,:P1CurrentActivityListForm:datalist,:growl" oncomplete="handleSubmit(args, 'P1CurrentActivityEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PF('P1CurrentActivityEditDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

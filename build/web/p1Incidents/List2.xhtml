@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListP1IncidentsTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="P1IncidentsListForm">
+                <p:outputPanel rendered="#{eisodosController.selected != null}">
+                    <h:outputText value="Λογαριασμός χρήστη: "/>
+                    <h:outputText value="#{eisodosController.selected.xrhsUsername}"/><br/>
+                    <h:outputText value="Στοιχεία χρήστη: "/>
+                    <h:outputText value="#{eisodosController.selected.xrhsFname} #{eisodosController.selected.xrhsLname}" /><br/>
+                </p:outputPanel>
+                <h:panelGrid id="stoixeiaPanelGrid" columns="2" cellpadding="5">
+                    <p:outputLabel for="address" value="Address: " />
+                    <p:inputText id="address" value="#{p1IncidentsController.address}"/>
+                    <p:outputLabel for="zip" value="Zip Code: " />                    
+                    <p:autoComplete id="zip" minQueryLength="2" 
+                                    value="#{p1IncidentsController.zip}" 
+                                    completeMethod="#{p1IncidentsController.fereIncidentsZip}" 
+                                    effect="fade" scrollHeight="300" 
+                                    emptyMessage="That zip does not exist" maxlength="5" />
+                    <p:commandButton value="Clear Values" update="stoixeiaPanelGrid panel" action="#{p1IncidentsController.resetValues()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                    <p:commandButton value="Submit" update="panel" action="#{p1IncidentsController.fereIncidentsByAddress()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                </h:panelGrid>
+                <p:panel id="panel" header="#{bundle.ListP1IncidentsTitle}">
+                    <p:dataTable id="datalist" value="#{p1IncidentsController.itemsByAddress}" var="item"
+                                 selectionMode="single" selection="#{p1IncidentsController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.inciKwd}"
+                                 rows="10"
+                                 rowsPerPageTemplate="5,10,15,20"
+                                 rendered="#{p1IncidentsController.itemsByAddress != null}"
+                                 >
+
+                        <p:ajax event="rowSelect"   update=" viewButton  "/>
+                        <p:ajax event="rowUnselect" update=" viewButton  "/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciStatus}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciStatus.statName}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciCreationDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciCreationDate}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciCompletionDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciCompletionDate}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciRequestNum}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciRequestNum}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciAddress}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciAddress}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciZip}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciZip}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciWard}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciWard}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciPoliceDistrict}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciPoliceDistrict}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciCommArea}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciCommArea}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListP1IncidentsTitle_inciRequestType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inciRequestType.inciTypeName}"/>
+                        </p:column>
+
+
+                        <f:facet name="footer">
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" actionListener="#{p1IncidentsController.showIncidentChild()}" update=":P1IncidentsViewForm" oncomplete="PF('P1IncidentsViewDialog').show()" disabled="#{empty p1IncidentsController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+
+
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

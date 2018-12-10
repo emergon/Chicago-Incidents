@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="P1IncidentTypeCreateDlg" widgetVar="P1IncidentTypeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateP1IncidentTypeTitle}">
+            <h:form id="P1IncidentTypeCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{p1IncidentTypeController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateP1IncidentTypeLabel_inciTypeId}" for="inciTypeId" />
+                        <p:inputText id="inciTypeId" value="#{p1IncidentTypeController.selected.inciTypeId}" title="#{bundle.CreateP1IncidentTypeTitle_inciTypeId}" required="true" requiredMessage="#{bundle.CreateP1IncidentTypeRequiredMessage_inciTypeId}"/>
+                        <p:outputLabel value="#{bundle.CreateP1IncidentTypeLabel_inciTypeName}" for="inciTypeName" />
+                        <p:inputText id="inciTypeName" value="#{p1IncidentTypeController.selected.inciTypeName}" title="#{bundle.CreateP1IncidentTypeTitle_inciTypeName}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{p1IncidentTypeController.create}" value="#{bundle.Save}" update="display,:P1IncidentTypeListForm:datalist,:growl" oncomplete="handleSubmit(args,'P1IncidentTypeCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PF('P1IncidentTypeCreateDialog').hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

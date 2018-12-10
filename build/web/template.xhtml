@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage name="/images/ajax-loader_grey.gif" />
+        </p:dialog>
+        
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
+                <h:form id="menuForm">
+                    <p:menubar>
+                        <p:submenu label="ΕΠΙΛΟΓΕΣ">
+                            <p:menuitem value="ΕΞΟΔΟΣ" outcome="/reset" icon="ui-icon-home"/>
+                            <p:menuitem value="ΑΛΛΑΓΗ ΣΥΝΘΗΜΑΤΙΚΟΥ" onclick="PF('DialogosSynthimatikouDialog').show()"/>
+                        </p:submenu>
+                        <p:menuitem value="All Incidents" outcome="/p1Incidents/List2.xhtml" />
+                        <p:menuitem value="Abandoned Vehicles" outcome="/p1AbandonedVehicle/List.xhtml" />
+                        <p:submenu label="Lights">
+                            <p:menuitem value="Alley Lights" outcome="/p1AlleyLightsOut/List.xhtml" />
+                            <p:menuitem value="Street Lights All" outcome="/p1StreetLightsAll/List.xhtml" />
+                            <p:menuitem value="Street Lights One" outcome="/p1StreetLightsOne/List.xhtml" />
+                        </p:submenu>
+                        <p:menuitem value="Garbage Carts" outcome="/p1GarbageCart/List.xhtml" />
+                        <p:menuitem value="Graffiti Removal" outcome="/p1Graffiti/List.xhtml" />
+                        <p:menuitem value="Pot Holes" outcome="/p1Potholes/List.xhtml" />
+                        <p:menuitem value="Rodent Baiting" outcome="/p1Rodent/List.xhtml" />
+                        <p:menuitem value="Sanitation Complaints" outcome="/p1Sanitation/List.xhtml" />
+                        <p:submenu label="Trees">
+                            <p:menuitem value="Tree Debris" outcome="/p1TreeDebris/List.xhtml" />
+                            <p:menuitem value="Tree Trims" outcome="/p1TreeTrims/List.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Settings">
+                            <p:menuitem value="Vehicle Colors" outcome="/p1Color/List.xhtml" />
+                            <p:menuitem value="Current Activities" outcome="/p1CurrentActivity/List.xhtml" />
+                            <p:menuitem value="Incident Types" outcome="/p1IncidentType/List.xhtml" />
+                            <p:menuitem value="Recent Actions" outcome="/p1RecentAction/List.xhtml" />
+                            <p:menuitem value="Status" outcome="/p1Status/List.xhtml" />
+                            <p:menuitem value="Users" outcome="/p1Xrhsths/List.xhtml" />
+                            <p:menuitem value="User Actions" outcome="/p1XrhsthAction/List.xhtml" rendered="#{eisodosController.selected.xrhsType==1}" />
+                        </p:submenu>
+                        <p:submenu label="Procedures">
+                            <p:menuitem value="Total Requests per Type by Date Range" outcome="/storedProcedures/1_RequestsPerTypeByDateRange.xhtml" />
+                            <p:menuitem value="Total Requests per Day by Type" outcome="/storedProcedures/2_RequestsPerDayByType.xhtml" />
+                            <p:menuitem value="Requests per Zip Code" outcome="/storedProcedures/3_MostCommonRequestPerZipByDate.xhtml" />
+                            <p:menuitem value="Average Time per Type" outcome="/storedProcedures/4_AvgCompletionTimePerTypeByDateRange.xhtml" />
+                            <p:menuitem value="Top SSA" outcome="/storedProcedures/6_Top5SsaWithRequestsPerDay.xhtml" />
+                            <p:menuitem value="Common Plates" outcome="/storedProcedures/7_PlatesMoreThanOnce.xhtml" />
+                            <p:menuitem value="Second Most Common Color" outcome="/storedProcedures/8_SecondMostCommonColor.xhtml" />
+
+
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+        <ui:include src="dialogosSynthimatikou.xhtml"/>
+    </h:body>
+
+</html>
